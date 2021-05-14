@@ -51,18 +51,13 @@ code, pre {
 
 .markdown {line-height: 1.5; word-wrap: break-word;}
 .markdown code {
-    padding: 0;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
+    padding: 0.2em 0;
     margin: 0;
     font-size: 85%;
     background-color: rgba(27,31,35,0.05);
     border-radius: 3px
 }
-.markdown code::before, .markdown code::after {
-    letter-spacing: -0.2em;
-    content: " ";
-}
+.markdown code::before, .markdown code::after { letter-spacing: -0.2em; content: " ";}
 .markdown code::before { padding: 0.2em;}
 .markdown pre {
     background-color: rgba(0, 0, 0, 0.05); 

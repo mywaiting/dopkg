@@ -55,7 +55,6 @@ export class BodyBlock extends Block {
     <div id="app">
         <div id="root">${ this.body }</div>
     </div>
-    <script type="text/javascript" src="/assets/js/main.js"></script>
     ${ this.linkJS?.length ? this.linkJS.forEach(js => `<script type="text/javascript" src="${ js }"></script>`) : ''}
     ${ this.inlineJS?.length ? `<script type="text/javascript">${ this.inlineJS }</script>` : '' }
 </body>

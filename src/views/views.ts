@@ -10,8 +10,10 @@ export class HeadBlock extends Block {
 
     constructor(
         public title: string,
-        public headCSS?: string[],
-        public headJS?: string[]
+        public linkCSS?: string[],
+        public linkJS?: string[],
+        public inlineCSS?: string,
+        public inlineJS?: string
     ) {
         super()
     }
@@ -26,9 +28,10 @@ export class HeadBlock extends Block {
     <meta name="author" content="DOPKG Developer" />
     <meta name="keywords" content="deno, deno package, deno install, deno import, deno run" />
     <title>${this.title}</title>
-    <link rel="stylesheet" href="/assets/css/screen.css" />
-    ${ this.headCSS?.length ? this.headCSS.forEach(css => `<link rel="stylesheet" href="${ css }"></script>`) : '' }
-    ${ this.headJS?.length ? this.headJS.forEach(js => `<script type="text/javascript" src="${ js }"></script>`) : ''}
+    ${ this.linkCSS?.length ? this.linkCSS.forEach(css => `<link rel="stylesheet" href="${ css }"></script>`) : '' }
+    ${ this.linkJS?.length ? this.linkJS.forEach(js => `<script type="text/javascript" src="${ js }"></script>`) : ''}
+    ${ this.inlineCSS?.length ? `<style>${ this.inlineCSS }</style>` : '' }
+    ${ this.inlineJS?.length ? `<script type="text/javascript">${ this.inlineJS }</script>` : '' }
 </head>
         `
     }
@@ -40,7 +43,8 @@ export class BodyBlock extends Block {
     constructor(
         public body: string,
         public bodyClass: string = 'page',
-        public bodyJS?: string[]
+        public linkJS?: string[],
+        public inlineJS?: string
     ) {
         super()
     }
@@ -52,7 +56,8 @@ export class BodyBlock extends Block {
         <div id="root">${ this.body }</div>
     </div>
     <script type="text/javascript" src="/assets/js/main.js"></script>
-    ${ this.bodyJS?.length ? this.bodyJS.forEach(js => `<script type="text/javascript" src="${ js }"></script>`) : ''}
+    ${ this.linkJS?.length ? this.linkJS.forEach(js => `<script type="text/javascript" src="${ js }"></script>`) : ''}
+    ${ this.inlineJS?.length ? `<script type="text/javascript">${ this.inlineJS }</script>` : '' }
 </body>
 </html>
         `

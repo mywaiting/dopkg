@@ -5,6 +5,78 @@ import {
 
 export class PageIndex extends Page {
 
+    // SPECIAL_OCTAL_CHARS = "\00a0"
+
+    inlineCSS = `
+/* (c) 2021 DOPKG. All rights reserved. */
+html {
+    font-family: sans-serif;
+    font-size: 62.5%; /* 1rem=10px */
+    line-height: 1.15;
+}
+body { 
+    margin: 0; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+p { margin-top: 0; margin-bottom: 1rem;}
+ol, ul, dl { margin-top: 0; margin-bottom: 1rem;}
+ol ol, ul ul, ol ul, ul ol { margin-bottom: 0;}
+pre, code {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 1rem;
+}
+pre { margin-top: 0; margin-bottom: 1rem; overflow: auto;}
+img { vertical-align: middle; border-style: none;}
+svg { overflow: hidden; vertical-align: middle;}
+a { text-decoration: none;}
+a:hover { text-decoration: underline;}
+
+body, input, textarea, td, button {
+    font-size: 1.6rem; /* 1.6rem=16px */
+}
+code, pre {
+    font-size: 1.6rem; /* 1.6rem=16px */
+    
+}
+
+.container { width: 730px; margin: 0 auto;}
+#header { margin-top: 5rem; padding-bottom: 5rem;}
+#header .brand { text-align: center; font-size: 3.6rem;}
+#header .brand-name { margin: 0;}
+#header .brand-slogen { font-size: 2.8rem;}
+#footer { background-color: #333; color: #eee; margin-top: 5rem;}
+#footer .container { padding: 3rem 0 2.5rem; text-align: center;}
+
+.markdown {line-height: 1.5; word-wrap: break-word;}
+.markdown code {
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27,31,35,0.05);
+    border-radius: 3px
+}
+.markdown code::before, .markdown code::after {
+    letter-spacing: -0.2em;
+    content: " ";
+}
+.markdown code::before { padding: 0.2em;}
+.markdown pre {
+    background-color: rgba(0, 0, 0, 0.05); 
+    padding-top: 2.5rem;
+    word-wrap: normal;
+}
+    `
+    // .replaceAll(/[\n]+/ig, '').replaceAll(/[\s]+/ig, ' ')
+
+    inlineJS = `
+/* (c) 2021 DOPKG. All rights reserved. */
+window.dopkg = {}
+    `
+
     render() {
         const title = 'DOPKG'
         
@@ -71,8 +143,23 @@ ${ new this.contentBlock(/* content */content).render() }
 ${ new this.footerBlock().render() }
         `
         const page = `
-${ new this.headBlock(/* title */title).render() }
-${ new this.bodyBlock(/* body */body, /* bodyClass */'page index').render() }
+${ 
+    new this.headBlock(
+        /* title */title,
+        /* linkCSS */undefined,
+        /* linkJS */undefined,
+        /* inlineCSS */this.inlineCSS,
+        /* inlineJS */undefined
+    ).render() 
+}
+${ 
+    new this.bodyBlock(
+        /* body */body, 
+        /* bodyClass */'page index',
+        /* linkJS */undefined,
+        /* inlineJS */this.inlineJS
+    ).render() 
+}
         `
         return page
     }

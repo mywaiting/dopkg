@@ -1,0 +1,4 @@
+# hello, dopkg.com
+
+User-agent: *
+Allow: /
